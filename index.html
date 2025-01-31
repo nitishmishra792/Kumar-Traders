@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KUMAR TRADERS - Billing Software</title>
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; }
+            50% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; }
+            100% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; }
         }
 
         body {
@@ -18,7 +19,6 @@
             background-size: cover;
             color: #fff;
         }
-
         .container {
             max-width: 700px;
             margin: auto;
@@ -27,70 +27,57 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             text-align: center;
-            animation: fadeIn 1s ease-in-out;
         }
-
         .header {
             font-size: 32px;
             font-weight: bold;
             color: #ffcc00;
             text-transform: uppercase;
-            animation: fadeIn 1.5s ease-in-out;
+            animation: glow 2s infinite alternate;
         }
-
         .proprietor {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #00ffcc;
+            color: #ff4444;
         }
-
         .images {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
         }
-
         .images img {
             width: 100px;
             height: 100px;
             border-radius: 10px;
             border: 2px solid #ffcc00;
         }
-
         label {
             font-weight: bold;
-            display: block;
-            margin-top: 10px;
+            color: #ffcc00;
         }
-
         select, input, button {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
+            border: 1px solid #ffcc00;
             border-radius: 5px;
             font-size: 16px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            border: 1px solid #ffcc00;
         }
-
         select {
             background-color: #333;
         }
-
         button {
             background-color: #ff9900;
             font-size: 18px;
             cursor: pointer;
             border: none;
-            transition: 0.3s;
         }
-
         button:hover {
             background-color: #cc7700;
-            transform: scale(1.05);
         }
     </style>
 </head>
@@ -110,27 +97,25 @@
         <label>Balu:</label>
         <select id="baluQty">
             <option value="0">Select</option>
-            <option value="3000">Half Trolley (₹3000)</option>
-            <option value="6000">Full Trolley (₹6000)</option>
+            <option value="3000">Half Trolley - ₹3000</option>
+            <option value="6000">Full Trolley - ₹6000</option>
         </select>
 
         <label>Gitti:</label>
         <select id="gittiQty">
             <option value="0">Select</option>
-            <option value="4500">Half Trolley (₹4500)</option>
-            <option value="9000">Full Trolley (₹9000)</option>
+            <option value="4500">Half Trolley - ₹4500</option>
+            <option value="9000">Full Trolley - ₹9000</option>
         </select>
 
         <label>Brick Type:</label>
-        <select id="brickType">
-            <option value="1No">1No (₹11500)</option>
-            <option value="Mithapak">Mithapak (₹8000)</option>
-            <option value="2No">2No (₹5500)</option>
-            <option value="Tukra">Tukra (₹3500)</option>
+        <select id="brickQty">
+            <option value="0">Select</option>
+            <option value="11500">1No - ₹11500</option>
+            <option value="8000">Mithapak - ₹8000</option>
+            <option value="5500">2No - ₹5500</option>
+            <option value="3500">Tukra - ₹3500</option>
         </select>
-
-        <label>Number of Brick Trolleys:</label>
-        <input type="number" id="brickQty" placeholder="Enter number of trolleys">
 
         <label>Plain Cement (₹350 per bag):</label>
         <input type="number" id="plainCementQty" placeholder="Enter quantity">
@@ -146,4 +131,38 @@
 
         <h3>Labour Charges: ₹<span id="labourCharge">0</span></h3>
 
-        <button onclick="calcul
+        <button onclick="calculateTotal()">Calculate Total</button>
+        <h3>Total Amount: ₹<span id="totalAmount">0</span></h3>
+
+        <button onclick="printBill()">Print Bill</button>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let baluTotal = Number(document.getElementById('baluQty').value);
+            let gittiTotal = Number(document.getElementById('gittiQty').value);
+            let brickTotal = Number(document.getElementById('brickQty').value);
+            let plainCementTotal = 350 * (document.getElementById('plainCementQty').value || 0);
+            let concreteCementTotal = 400 * (document.getElementById('concreteCementQty').value || 0);
+            let lohaTotal = 60 * (document.getElementById('lohaWeight').value || 0);
+            let lohaBundles = Number(document.getElementById('lohaBundles').value || 0);
+
+            let labourCharge = 
+                (baluTotal === 3000 ? 60 : (baluTotal === 6000 ? 120 : 0)) +
+                (gittiTotal === 4500 ? 75 : (gittiTotal === 9000 ? 150 : 0)) +
+                (document.getElementById('plainCementQty').value * 6 || 0) +
+                (document.getElementById('concreteCementQty').value * 6 || 0) +
+                (lohaBundles * 10); // Added Rs. 10 per Loha bundle
+
+            let total = baluTotal + gittiTotal + brickTotal + plainCementTotal + concreteCementTotal + lohaTotal + labourCharge;
+
+            document.getElementById('labourCharge').innerText = labourCharge.toFixed(2);
+            document.getElementById('totalAmount').innerText = total.toFixed(2);
+        }
+
+        function printBill() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
