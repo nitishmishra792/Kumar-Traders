@@ -51,7 +51,7 @@
         }
         .notice span {
             display: inline-block;
-            animation: scrollText 25s linear infinite;
+            animation: scrollText 35s linear infinite; /* Reduced speed */
         }
         @keyframes scrollText {
             0% { transform: translateX(100%); }
@@ -90,7 +90,7 @@
 <body>
 
     <div class="notice">
-        <span>🚨 New Bricks are also Available 🚨 🚨These are Just For a Entertainment Purpose 🚨</span>
+        <span>🚨 New Bricks are also Available 🚨 🚨These are Just For an Entertainment Purpose 🚨</span>
     </div>
 
     <div class="container">
@@ -152,9 +152,10 @@
             let plainCementTotal = 350 * (document.getElementById('plainCementQty').value || 0);
             let concreteCementTotal = 400 * (document.getElementById('concreteCementQty').value || 0);
             let lohaTotal = 60 * (document.getElementById('lohaWeight').value || 0);
-
+            
             let lohaBundles = document.getElementById('lohaBundles').value || 0;
-            let cementBags = (document.getElementById('plainCementQty').value || 0) + (document.getElementById('concreteCementQty').value || 0);
+            let plainCementBags = document.getElementById('plainCementQty').value || 0;
+            let concreteCementBags = document.getElementById('concreteCementQty').value || 0;
 
             let labourCharge = 0;
 
@@ -170,7 +171,12 @@
                 labourCharge += 150;
             }
 
-            labourCharge += (cementBags * 6) + (lohaBundles * 10);
+            // Corrected Labour Charges: ₹6 per bag of cement
+            labourCharge += (plainCementBags * 6);
+            labourCharge += (concreteCementBags * 6);
+
+            // Labour charge for Loha Bundles: ₹10 per bundle
+            labourCharge += (lohaBundles * 10);
 
             let total = baluTotal + gittiTotal + brickTotal + plainCementTotal + concreteCementTotal + lohaTotal + labourCharge;
 
