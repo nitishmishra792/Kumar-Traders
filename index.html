@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KUMAR TRADERS - Billing Software</title>
     <style>
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; }
-            50% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; }
-            100% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; }
-        }
-
         body {
             font-family: 'Verdana', sans-serif;
             margin: 20px;
@@ -18,6 +12,7 @@
             background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
             background-size: cover;
             color: #fff;
+            text-align: center;
         }
         .container {
             max-width: 700px;
@@ -26,7 +21,6 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            text-align: center;
         }
         .header {
             font-size: 32px;
@@ -35,23 +29,33 @@
             text-transform: uppercase;
             animation: glow 2s infinite alternate;
         }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #ffcc00; }
+            to { text-shadow: 0 0 20px #ff6600; }
+        }
         .proprietor {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #ff4444;
+            color: #00ffcc; /* Changed color */
         }
-        .images {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+        .notice {
+            width: 100%;
+            background: #ffcc00;
+            color: black;
+            padding: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
         }
-        .images img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            border: 2px solid #ffcc00;
+        .notice span {
+            display: inline-block;
+            animation: scrollText 25s linear infinite;
+        }
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
         label {
             font-weight: bold;
@@ -61,61 +65,63 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ffcc00;
             border-radius: 5px;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            border: none;
+            text-align: center;
         }
         select {
-            background-color: #333;
+            background-color: #444;
+            color: white;
         }
         button {
             background-color: #ff9900;
+            color: white;
             font-size: 18px;
             cursor: pointer;
-            border: none;
+            transition: 0.3s;
         }
         button:hover {
             background-color: #cc7700;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+
+    <div class="notice">
+        <span>🚨 New Bricks are also Available 🚨 🚨These are Just For a Entertainment Purpose 🚨</span>
+    </div>
+
     <div class="container">
         <div class="header">KUMAR TRADERS - Billing</div>
-        <div class="proprietor">Proprietor: Mithilesh Kumar Mishra (Munan Jee)</div>
-
-        <div class="images">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2022/9/WX/YQ/FN/158050960/brown-balu-sand-1000x1000.jpg" alt="Sand">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2022/8/PF/FN/VL/156551355/20-mm-stone-gitti-1000x1000.jpg" alt="Gitti">
-            <img src="https://www.kajariaceramics.com/product-picture/GP03211_b.jpg" alt="Bricks">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2023/10/350969346/GC/QK/UN/123922293/50kg-lafarge-duraguard-plain-cement.jpg" alt="Cement">
-            <img src="https://5.imimg.com/data5/SELLER/Default/2024/9/447613519/WJ/CD/PB/55949831/kamdhenu-steel-tmt-bars-1000x1000.jpg" alt="Loha">
-        </div>
-
+        <div class="proprietor">Prop: Mithilesh Kumar Mishra (Munan Jee)</div>
+        
         <label>Balu:</label>
         <select id="baluQty">
             <option value="0">Select</option>
-            <option value="3000">Half Trolley - ₹3000</option>
-            <option value="6000">Full Trolley - ₹6000</option>
+            <option value="3000">Half Trolley (₹3000)</option>
+            <option value="6000">Full Trolley (₹6000)</option>
         </select>
 
         <label>Gitti:</label>
         <select id="gittiQty">
             <option value="0">Select</option>
-            <option value="4500">Half Trolley - ₹4500</option>
-            <option value="9000">Full Trolley - ₹9000</option>
+            <option value="4500">Half Trolley (₹4500)</option>
+            <option value="9000">Full Trolley (₹9000)</option>
         </select>
 
         <label>Brick Type:</label>
-        <select id="brickQty">
+        <select id="brickType">
             <option value="0">Select</option>
-            <option value="11500">1No - ₹11500</option>
-            <option value="8000">Mithapak - ₹8000</option>
-            <option value="5500">2No - ₹5500</option>
-            <option value="3500">Tukra - ₹3500</option>
+            <option value="11500">1No (₹11500)</option>
+            <option value="8000">Mithapak (₹8000)</option>
+            <option value="5500">2No (₹5500)</option>
+            <option value="3500">Tukra (₹3500)</option>
         </select>
+
+        <label>Brick Quantity:</label>
+        <input type="number" id="brickQty" placeholder="Enter number of trolleys">
 
         <label>Plain Cement (₹350 per bag):</label>
         <input type="number" id="plainCementQty" placeholder="Enter quantity">
@@ -139,20 +145,32 @@
 
     <script>
         function calculateTotal() {
-            let baluTotal = Number(document.getElementById('baluQty').value);
-            let gittiTotal = Number(document.getElementById('gittiQty').value);
-            let brickTotal = Number(document.getElementById('brickQty').value);
+            let baluTotal = parseInt(document.getElementById('baluQty').value) || 0;
+            let gittiTotal = parseInt(document.getElementById('gittiQty').value) || 0;
+            let brickType = parseInt(document.getElementById('brickType').value) || 0;
+            let brickTotal = brickType * (document.getElementById('brickQty').value || 0);
             let plainCementTotal = 350 * (document.getElementById('plainCementQty').value || 0);
             let concreteCementTotal = 400 * (document.getElementById('concreteCementQty').value || 0);
             let lohaTotal = 60 * (document.getElementById('lohaWeight').value || 0);
-            let lohaBundles = Number(document.getElementById('lohaBundles').value || 0);
 
-            let labourCharge = 
-                (baluTotal === 3000 ? 60 : (baluTotal === 6000 ? 120 : 0)) +
-                (gittiTotal === 4500 ? 75 : (gittiTotal === 9000 ? 150 : 0)) +
-                (document.getElementById('plainCementQty').value * 6 || 0) +
-                (document.getElementById('concreteCementQty').value * 6 || 0) +
-                (lohaBundles * 10); // Added Rs. 10 per Loha bundle
+            let lohaBundles = document.getElementById('lohaBundles').value || 0;
+            let cementBags = (document.getElementById('plainCementQty').value || 0) + (document.getElementById('concreteCementQty').value || 0);
+
+            let labourCharge = 0;
+
+            if (baluTotal === 3000) {
+                labourCharge += 60;
+            } else if (baluTotal === 6000) {
+                labourCharge += 120;
+            }
+
+            if (gittiTotal === 4500) {
+                labourCharge += 75;
+            } else if (gittiTotal === 9000) {
+                labourCharge += 150;
+            }
+
+            labourCharge += (cementBags * 6) + (lohaBundles * 10);
 
             let total = baluTotal + gittiTotal + brickTotal + plainCementTotal + concreteCementTotal + lohaTotal + labourCharge;
 
@@ -164,5 +182,6 @@
             window.print();
         }
     </script>
+
 </body>
 </html>
