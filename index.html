@@ -7,55 +7,60 @@
     <style>
         body {
             font-family: 'Verdana', sans-serif;
-            margin: 20px;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
             background-size: cover;
             color: #fff;
-            text-align: center;
         }
         .container {
-            max-width: 700px;
-            margin: auto;
-            background: rgba(0, 0, 0, 0.8);
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         .header {
             font-size: 32px;
             font-weight: bold;
-            color: #ffcc00;
+            color: #ff0000;
             text-transform: uppercase;
             animation: glow 2s infinite alternate;
         }
         @keyframes glow {
             from { text-shadow: 0 0 5px #ffcc00; }
-            to { text-shadow: 0 0 20px #ff6600; }
+            to { text-shadow: 0 0 20px #854c26; }
         }
         .proprietor {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #00ffcc; /* Changed color */
+            color: #00ffcc;
         }
-        .notice {
+        .material-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .material-box {
+            width: 150px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .material-box img {
             width: 100%;
-            background: #ffcc00;
-            color: black;
-            padding: 5px 0;
-            font-size: 18px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .material-name {
+            font-size: 14px;
             font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .notice span {
-            display: inline-block;
-            animation: scrollText 35s linear infinite; /* Reduced speed */
-        }
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            margin-top: 5px;
+            color: #ffcc00;
         }
         label {
             font-weight: bold;
@@ -63,7 +68,7 @@
         }
         select, input, button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 5px;
             font-size: 16px;
@@ -85,30 +90,71 @@
             background-color: #cc7700;
             transform: scale(1.05);
         }
+        .share-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .share-buttons button {
+            background-color: #25D366; /* WhatsApp */
+            font-size: 16px;
+        }
+        .share-buttons button.gmail {
+            background-color: #D44638; /* Gmail */
+        }
+        @media (max-width: 768px) {
+            .material-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .material-box {
+                width: 80%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="notice">
-        <span>🚨 New Bricks are also Available 🚨 🚨These are Just For an Entertainment Purpose 🚨</span>
-    </div>
-
     <div class="container">
-        <div class="header">KUMAR TRADERS - Billing</div>
+        <div class="header">KUMAR TRADERS</div>
         <div class="proprietor">Prop: Mithilesh Kumar Mishra (Munan Jee)</div>
-        
+
+        <!-- Material Images Section -->
+        <div class="material-container">
+            <div class="material-box">
+                <img src="https://www.prabhatkhabar.com/wp-content/uploads/2024/01/Sand-Bokaro-2.jpg" alt="Balu">
+                <div class="material-name">Balu</div>
+            </div>
+            <div class="material-box">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2022/3/HJ/RO/UC/100046656/gitti-1000x1000.jpg" alt="Gitti">
+                <div class="material-name">Gitti</div>
+            </div>
+            <div class="material-box">
+                <img src="https://i0.wp.com/civilblog.org/wp-content/uploads/2015/02/How-to-check-brick-quality-on-site.jpg?w=750&ssl=1" alt="Bricks">
+                <div class="material-name">Bricks</div>
+            </div>
+            <div class="material-box">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2020/8/RE/CN/WZ/40798815/nuvoco-concreto-cement-1000x1000.jpg" alt="Cement">
+                <div class="material-name">Cement</div>
+            </div>
+            <div class="material-box">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/9/447613519/WJ/CD/PB/55949831/kamdhenu-steel-tmt-bars-1000x1000.jpg" alt="Loha">
+                <div class="material-name">Loha</div>
+            </div>
+        </div>
+
         <label>Balu:</label>
         <select id="baluQty">
             <option value="0">Select</option>
-            <option value="3000">Half Trolley (₹3000)</option>
-            <option value="6000">Full Trolley (₹6000)</option>
+            <option value="3000">1 feet (₹3000)</option>
+            <option value="6000">2 feet (₹6000)</option>
         </select>
 
         <label>Gitti:</label>
         <select id="gittiQty">
             <option value="0">Select</option>
-            <option value="4500">Half Trolley (₹4500)</option>
-            <option value="9000">Full Trolley (₹9000)</option>
+            <option value="4500">1 feet (₹4500)</option>
+            <option value="9000">2 feet (₹9000)</option>
         </select>
 
         <label>Brick Type:</label>
@@ -129,20 +175,31 @@
         <label>Concrete Cement (₹400 per bag):</label>
         <input type="number" id="concreteCementQty" placeholder="Enter quantity">
 
-        <label>Loha (₹60 per kg):</label>
-        <input type="number" id="lohaWeight" placeholder="Enter weight in kg">
+        <!-- Loha Selection -->
+        <label>Enter Weight (in kg):</label>
+        <input type="number" id="weightKg" placeholder="Enter weight in kg">
 
-        <label>Loha Bundles:</label>
-        <input type="number" id="lohaBundles" placeholder="Enter number of bundles">
+        <label>Enter Number of Bundles for Loha:</label>
+        <input type="number" id="bundleQty" placeholder="Enter number of bundles">
 
-        <h3>Labour Charges: ₹<span id="labourCharge">0</span></h3>
+        <h3>Labour Charges (Other Materials): ₹<span id="labourCharge">0</span></h3>
 
         <button onclick="calculateTotal()">Calculate Total</button>
         <h3>Total Amount: ₹<span id="totalAmount">0</span></h3>
 
         <button onclick="printBill()">Print Bill</button>
+
+        <!-- Share Buttons -->
+        <div class="share-buttons">
+            <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+            <button class="gmail" onclick="shareOnGmail()">Share on Gmail</button>
+        </div>
+
+        <!-- Download Button -->
+        <button onclick="downloadBill()">Download Bill</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function calculateTotal() {
             let baluTotal = parseInt(document.getElementById('baluQty').value) || 0;
@@ -151,43 +208,83 @@
             let brickTotal = brickType * (document.getElementById('brickQty').value || 0);
             let plainCementTotal = 350 * (document.getElementById('plainCementQty').value || 0);
             let concreteCementTotal = 400 * (document.getElementById('concreteCementQty').value || 0);
-            let lohaTotal = 60 * (document.getElementById('lohaWeight').value || 0);
-            
-            let lohaBundles = document.getElementById('lohaBundles').value || 0;
-            let plainCementBags = document.getElementById('plainCementQty').value || 0;
-            let concreteCementBags = document.getElementById('concreteCementQty').value || 0;
 
+            // Calculate weight cost for Loha
+            let weightKg = parseInt(document.getElementById('weightKg').value) || 0;
+            let weightCost = weightKg * 60; // ₹60 per kg
+
+            // Calculate labour charge for Loha (₹10 per bundle)
+            let bundleQty = parseInt(document.getElementById('bundleQty').value) || 0;
+            let labourChargeLoha = bundleQty * 10; // ₹10 per bundle
+
+            // Labour charges for other materials
             let labourCharge = 0;
+            if (baluTotal === 3000) { labourCharge += 60; }
+            else if (baluTotal === 6000) { labourCharge += 120; }
 
-            if (baluTotal === 3000) {
-                labourCharge += 60;
-            } else if (baluTotal === 6000) {
-                labourCharge += 120;
-            }
+            // Labour charges for Gitti
+            if (gittiTotal === 4500) { labourCharge += 75; }
+            else if (gittiTotal === 9000) { labourCharge += 150; }
 
-            if (gittiTotal === 4500) {
-                labourCharge += 75;
-            } else if (gittiTotal === 9000) {
-                labourCharge += 150;
-            }
+            // Cement Labour Charges (₹6 per bag)
+            labourCharge += (document.getElementById('plainCementQty').value || 0) * 6;
+            labourCharge += (document.getElementById('concreteCementQty').value || 0) * 6;
 
-            // Corrected Labour Charges: ₹6 per bag of cement
-            labourCharge += (plainCementBags * 6);
-            labourCharge += (concreteCementBags * 6);
+            // Add Loha labour charge to total labour charge
+            labourCharge += labourChargeLoha;
 
-            // Labour charge for Loha Bundles: ₹10 per bundle
-            labourCharge += (lohaBundles * 10);
+            // Calculate total
+            let total = baluTotal + gittiTotal + brickTotal + plainCementTotal + concreteCementTotal + labourCharge + weightCost;
 
-            let total = baluTotal + gittiTotal + brickTotal + plainCementTotal + concreteCementTotal + lohaTotal + labourCharge;
-
-            document.getElementById('labourCharge').innerText = labourCharge.toFixed(2);
-            document.getElementById('totalAmount').innerText = total.toFixed(2);
+            document.getElementById('labourCharge').innerText = labourCharge;
+            document.getElementById('totalAmount').innerText = total;
         }
 
         function printBill() {
             window.print();
         }
-    </script>
 
+        function shareOnWhatsApp() {
+            const totalAmount = document.getElementById('totalAmount').innerText;
+            const message = `Your bill amount is ₹${totalAmount}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareOnGmail() {
+            const totalAmount = document.getElementById('totalAmount').innerText;
+            const message = `Your bill amount is ₹${totalAmount}`;
+            const url = `mailto:?subject=Your Bill&body=${encodeURIComponent(message)}`;
+            window.location.href = url;
+        }
+
+        function downloadBill() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Set up the fonts and styling
+            doc.setFont("helvetica", "normal");
+
+            // Add Company Info (Header)
+            doc.setFontSize(20);
+            doc.text("KUMAR TRADERS", 10, 10);
+            doc.setFontSize(12);
+            doc.text(`Prop: Mithilesh Kumar Mishra (Munan Jee)`, 10, 20);
+
+            // Add Material Quantity and Total Data
+            doc.text(`Balu Total: ₹${parseInt(document.getElementById('baluQty').value) || 0}`, 10, 30);
+            doc.text(`Gitti Total: ₹${parseInt(document.getElementById('gittiQty').value) || 0}`, 10, 40);
+            doc.text(`Bricks Total: ₹${parseInt(document.getElementById('brickQty').value) * (parseInt(document.getElementById('brickType').value) || 0)}`, 10, 50);
+            doc.text(`Plain Cement Total: ₹${350 * (document.getElementById('plainCementQty').value || 0)}`, 10, 60);
+            doc.text(`Concrete Cement Total: ₹${400 * (document.getElementById('concreteCementQty').value || 0)}`, 10, 70);
+            doc.text(`Weight Cost: ₹${parseInt(document.getElementById('weightKg').value) * 60 || 0}`, 10, 80);
+            doc.text(`Labour Charge for Loha: ₹${parseInt(document.getElementById('bundleQty').value) * 10 || 0}`, 10, 90);
+            doc.text(`Labour Charges (Other Materials): ₹${document.getElementById('labourCharge').innerText}`, 10, 100);
+            doc.text(`Total Amount: ₹${document.getElementById('totalAmount').innerText}`, 10, 110);
+
+            // Save the PDF
+            doc.save('Bill.pdf');
+        }
+    </script>
 </body>
 </html>
